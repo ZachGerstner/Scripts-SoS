@@ -1,17 +1,20 @@
 #!/bin/bash
+#EDIT THIS BEFORE USE!!!!
 CONTROLLER_IP=130.127.38.2
 CONTROLLER_PORT=6011
-VLAN=vlan2228
 DESIRED_IP=192.168.1.1/24
-
+#####################################################################
+#Should be Automatic From this point on                             #
+#####################################################################
 echo 'Ensure the following are correct :'
 echo "	1. The script variables are set to the correct addresses.
 	2. That ovs is properly installed (ovs-vswitchd --version)
 	3. The controller has been properly configured and is running"
-echo 'You have 10 seconds to exit if any of the above criteria are not met.'
+echo 'You have 5 seconds to exit if any of the above criteria are not met.'
 
-sleep 10
+sleep 5
 
+VLAN=ifconfig | awk '{print $1;}' | grep "vlan"
 sudo ovs-vsctl add-br br0
 sudo ovs-vsctl add-port br0 $VLAN
 sudo ifconfig $VLAN 0 up
@@ -41,6 +44,7 @@ then
 	then
 		echo 'Installing SoS Agents now...'
 		sudo git clone http://github.com/cbarrin/sos-agent 
+		cd ./sos-agent
 		make 
 		./run.sh
 	else
