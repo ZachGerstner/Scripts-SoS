@@ -21,7 +21,8 @@ sudo ifconfig $(ifconfig | awk '{print $1;}' | grep "vlan") 0 up
 sudo ifconfig br0 $DESIRED_IP up
 sudo ovs-vsctl set-controller br0 tcp:$CONTROLLER_IP:$CONTROLLER_PORT
 sudo ovs-vsctl show
-echo 'Does the bridge look correct? 0=n 1=y'
+ifconfig | grep "br0"
+echo 'Does the Ports and IP look correct? 0=n 1=y'
 read x 
 
 if [ $x -eq 0 ]
