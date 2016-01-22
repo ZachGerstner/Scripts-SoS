@@ -3,7 +3,7 @@
 CONTROLLER_IP=130.127.38.2
 CONTROLLER_PORT=6011
 DESIRED_IP=192.168.1.1/24
-VLAN= ifconfig | awk '{print $1;}' | grep "vlan" 
+VLAN= (ifconfig | awk '{print $1;}' | grep "vlan") 
 #####################################################################
 #Should be Automatic From this point on                             #
 #####################################################################
