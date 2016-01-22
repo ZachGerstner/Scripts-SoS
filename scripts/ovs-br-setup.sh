@@ -14,10 +14,10 @@ echo 'You have 5 seconds to exit if any of the above criteria are not met.'
 
 sleep 5
 
-VLAN < $(ifconfig | awk '{print $1;}' | grep "vlan")
+ $(ifconfig | awk '{print $1;}' | grep "vlan")
 sudo ovs-vsctl add-br br0
-sudo ovs-vsctl add-port br0 $VLAN
-sudo ifconfig $VLAN 0 up
+sudo ovs-vsctl add-port br0 $(ifconfig | awk '{print $1;}' | grep "vlan")
+sudo ifconfig $(ifconfig | awk '{print $1;}' | grep "vlan") 0 up
 sudo ifconfig br0 $DESIRED_IP up
 sudo ovs-vsctl set-controller br0 tcp:$CONTROLLER_IP:$CONTROLLER_PORT
 sudo ovs-vsctl show
