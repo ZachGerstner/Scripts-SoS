@@ -14,7 +14,7 @@ echo 'You have 5 seconds to exit if any of the above criteria are not met.'
 
 sleep 5
 
- $(ifconfig | awk '{print $1;}' | grep "vlan")
+# $(ifconfig | awk '{print $1;}' | grep "vlan"
 sudo ovs-vsctl add-br br0
 sudo ovs-vsctl add-port br0 $(ifconfig | awk '{print $1;}' | grep "vlan")
 sudo ifconfig $(ifconfig | awk '{print $1;}' | grep "vlan") 0 up
