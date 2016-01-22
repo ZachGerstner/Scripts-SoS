@@ -3,6 +3,7 @@
 CONTROLLER_IP=130.127.38.2
 CONTROLLER_PORT=6011
 DESIRED_IP=192.168.1.1/24
+VLAN= ifconfig | awk '{print $1;}' | grep "vlan" 
 #####################################################################
 #Should be Automatic From this point on                             #
 #####################################################################
@@ -14,7 +15,6 @@ echo 'You have 5 seconds to exit if any of the above criteria are not met.'
 
 sleep 5
 
-VLAN=ifconfig | awk '{print $1;}' | grep "vlan"
 sudo ovs-vsctl add-br br0
 sudo ovs-vsctl add-port br0 $VLAN
 sudo ifconfig $VLAN 0 up
