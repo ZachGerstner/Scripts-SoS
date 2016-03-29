@@ -6,10 +6,10 @@ DESIRED_IP=192.168.2.1/24
 PARTNER_IP=192.168.2.2 #any other machine in the topology
 #Go To line 56 change the perl command as needed
 #####################################################################
-#Should be Automatic From this point on  more or less               #
+#Should be Automatic From this point on  more or less except 59     #
 #####################################################################
 echo 'Before running this script check the following :'
-echo "	1. The script variables are set correctly.
+echo "	1. The script variables are set correctly including line 59.
 	2. Ovs is properly installed (ovs-vswitchd --version)
 	3. The controller has been properly configured and is running"
 echo 'You have 5 seconds to exit to make any necessary adjustments.'
@@ -25,11 +25,13 @@ sudo apt-get update
 cg=$(sudo apt --installed list | grep "clang")
 uu=$(sudo apt --installed list | grep "uuid-dev")
 lx=$(sudo apt --installed list | grep "libxml2-dev")
+#sc=$(sudo apt --installed list | grep "")
 if [ -z $cg ] || [ -z $uu ] || [-z $lx ];
 then
 	sudo apt-get install clang -y
 	sudo apt-get install uuid-dev -y
 	sudo apt-get install libxml2-dev -y
+	sudo apt-get install screen -y
 else
 	echo 'Dependency install complete, 5 second rest to exit should errors occur.'
 	sleep 5
