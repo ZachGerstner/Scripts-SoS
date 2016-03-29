@@ -32,6 +32,7 @@ then
 	sudo apt-get install uuid-dev -y
 	sudo apt-get install libxml2-dev -y
 	sudo apt-get install screen -y
+	sudo apt-get install vim -y
 else
 	echo 'Dependency install complete, 5 second rest to exit should errors occur.'
 	sleep 5
